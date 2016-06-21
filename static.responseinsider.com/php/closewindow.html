@@ -1,0 +1,41 @@
+<html>
+<head>
+<script type="text/javascript" src="http://responseinsider.com/javascript/jquery.js"></script>
+<script type="text/javascript">
+
+var countdownFrom = 3;  // number of seconds
+var countdownwin;
+
+var stp;
+function CountDownStart() {
+   stp = setInterval("CountDownTimer('CountDownTime')",1000)
+}
+
+function CountDownTimer(id)
+{
+    if (countdownFrom==0) {clearInterval(stp); window.close(); }
+    else     {
+                var x
+                var cntText = "Window Closing in "+countdownFrom+" seconds";
+
+            if (document.getElementById)
+        {
+            x = document.getElementById(id);
+            x.innerHTML = cntText;        }
+        else if (document.all)
+        {
+            x = document.all[id];
+            x.innerHTML = cntText;        }
+        }
+countdownFrom--
+}
+window.onload = CountDownStart();
+//window.onload = self.setInterval("", 1000);
+
+</script>
+</head>
+<body>
+<h2 align="center"><font face="Tahoma"><Div id="CountDownTime"></div></font></h2>
+</body>
+
+</html>
