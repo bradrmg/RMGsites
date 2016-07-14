@@ -1,19 +1,18 @@
 <?php 
 
-//$ccnum = "8111111111111111";
-//$ccvalid = is_valid_Luhn("4111111111111111");
+$numbertocheck = $_REQUEST['ccnum'];
 
-//var_dump($ccvalid);
-/*
-if ($ccvalid == true){
-	echo "Valid";
-}
-else {
-	echo "Not Valid";
-}
-*/
+$isccvalid = post_is_valid_luhn($numbertocheck);
 
-function is_valid_luhn($number) {
+if ($isccvalid == false){
+	echo 'Credit Card Number is Invalid';
+}
+else{
+	echo 'Approved';
+}
+
+
+function post_is_valid_luhn($number) {
 	settype($number, 'string');
 	$sumTable = array(
 			array(0,1,2,3,4,5,6,7,8,9),

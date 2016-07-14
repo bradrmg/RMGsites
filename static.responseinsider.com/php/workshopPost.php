@@ -24,7 +24,7 @@ $selected = mssql_select_db($database, $dbhandle) or die("could not connect to d
 		WHERE 1=1
 		AND ExternalID <> ''
 		AND ProjectID IN  (949, 935, 980, 982, 997, 981)
-		AND CAST(Registerdate AS DATE) = '2016-06-20' 
+		AND CAST(Registerdate AS DATE) = '2016-07-13'  
 		
 			
 		

@@ -16,14 +16,13 @@ $selected = mssql_select_db($database, $dbhandle) or die("could not connect to d
 	FROM Registration r
 	LEFT JOIN PostResult p ON R.ID = p.RegID
 	LEFT JOIN regStringNEW s ON r.ID = s.RMGregID
-	WHERE Registerdate >= '2016-06-20'
+	WHERE Registerdate >= '2016-07-06'
 	AND ProjectID NOT IN (949, 935, 980, 982)
 	AND Scriptname NOT IN ('REI1000_151229')
 	AND RMGType NOT IN ('FUTURE', 'ONLINE', '', 'GUEST', 'PB', '', 'WNA')
 	AND LeadType NOT IN ('Online', 'LiveOps', 'XMAIL', 'OB', 'RMG', 'RMGRR', 'PNB', 'MMI REG', 'NON-CC')
 	AND Cancelled = 0		
 	AND p.error IS NULL
-	
 	
 
 EOD;
@@ -47,7 +46,7 @@ print_r ($start);
 echo "</pre>";
 
 
-$url =  'pl-rmgstaticws01.response.corp/php/testpost.php';
+$url =  'pl-rmgstaticws01.response.corp/php/regpost.php';
 
 
 foreach($tempArray as $key => $val)
@@ -74,7 +73,7 @@ function post_content($url,$nfields, $post_fields)
     curl_close ($ch);
 	echo "<pre>";
    return $result;
-   echo "</pre>";
+   //echo "</pre>";
 }
 
 

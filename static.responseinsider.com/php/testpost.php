@@ -22,6 +22,9 @@ $rmgregid = $postvars['RMGregID'];
 //Credentials to access Reg App
 $creds = 'vendor_token=RMG&api_token=7aaeec40ffe4c14d98fe9d0d81fc9aea';
 
+$spacearray = array(
+	"Market Group Number" => "This is a test"
+);
 
 //JSON Posting info, create string and url to post to.
 //TEST-STAGING URL
@@ -31,10 +34,16 @@ $url = 'https://reg.evtech.com/api/registration.json';
 
 //Building and cleaning variable for post.
 $finalvars = http_build_query($postvars);
+$jpostvars = json_encode($postvars);
+//echo $finalvars;
+echo "<br/>";
+$newkeys = (array_keys($finalvars));
+$spacevars = http_build_query($spacearray);
+print_r(array_keys($postvars)); //$jpostvars;
 //Strip underscores added by php to replace with white space
-$finalvars = str_replace("_"," ",$finalvars);
+//$finalvars = str_replace("_"," ",$finalvars);
 //Add back the under score to the tag fields.
-$finalvars = str_replace("tag ","tag_",$finalvars);
+//$finalvars = str_replace("tag ","tag_",$finalvars);
 
 //Adding credentials to the vars so they can be passed in post fields.
 $pfields = $creds.'&'.$finalvars;
@@ -45,7 +54,7 @@ $pfields = $creds.'&'.$finalvars;
 if ($phone == '8017178010' || $phone == '8017173131') {
 	die('Test PhoneNum: Cannot Post');
 }
-
+/*
 //Checking for all blank data and then will kill the post if needed.
 if($fn == $ln) {
 	die('Empty Data cannot post');
@@ -82,7 +91,7 @@ EOD;
 }
 
 echo "completed - post result is ".$result."!";
-
+*/
 
 
 //HELPER CODE IF EVER NEEDED
