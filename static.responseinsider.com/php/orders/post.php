@@ -16,9 +16,16 @@ $selected = mssql_select_db($database, $dbhandle) or die("could not connect to d
 //Setting variable from post
 $postvars = ($_REQUEST);
 $regid = $_REQUEST['regid'];
+$crm_guid = $_REQUEST['guid'];
+$isreminder = $_REQUEST['rem'];
 
 //Call function to get the CRM GUID from the Reg ID passed
-$guid = get_crm_guid($regid);
+if ($isreminder == "1"){
+	$guid = $crm_guid;
+}else{
+	$guid = get_crm_guid($regid);
+}
+
 //echo $guid;
 $tguid = "8C9C9519-2045-E611-80CB-000D3A32101C";
 
@@ -139,8 +146,13 @@ else {
 		//$errori = $errors;
 	//}
 	
-
-	$postype = "CC_VIP";
+// Set the order type for Reg VIP or Reminder VIP
+if ($isreminder == "1"){
+	$postype = "REM VIP";
+}else{
+	$postype = "REG VIP";
+}
+	
 
 //Insert Statement to capture CRM ID and post information
 	$sql =<<<EOD
@@ -149,15 +161,15 @@ VALUES ('$regid','$postype', '$guid', '$errorsi', '$pay_id', '$order_id', '$cred
 EOD;
 	mssql_query($sql);
 	//echo "<pre>";
-	print_r($result);
-	echo "<br/>";
+	//print_r($result);
+	//echo "<br/>";
 	if(count($errorcheck) > 0)
 	{
 		echo 'Error';
 	}
 	else
 	{
-		echo 'Success';
+		echo 'Approved';
 	}
 
 }
